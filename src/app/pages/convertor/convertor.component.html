@@ -1,0 +1,58 @@
+<form class="file-upload" #myform="ngForm" (ngSubmit)="onSubmit()">
+
+  <button class="file-upload-btn" type="button" (click)="fileInput.click()">Add Image</button>
+  <div class="image-upload-wrap">
+    <input
+      #fileInput
+      class="file-upload-input"
+      (change)="handleImageChange($event)"
+      type="file"
+      name="file"
+      accept="image/*"
+    />
+    <div class="drag-text">
+      <h3>Drag and drop a file or select Add Image</h3>
+    </div>
+  </div>
+
+  <div class="file-upload-content" *ngIf="showImage">
+    <img class="file-upload-image" [src]="imageUrl" alt="your image" />
+    <div class="image-title-wrap">
+      <button type="button" (click)="removeUpload()" class="remove-image">
+        Remove <span class="image-title">{{ file?.name }}</span>
+      </button>
+    </div>
+  </div>
+
+  <select [disabled]="!showImage" required [(ngModel)]="selectedOption" name="option" class="form-select mt-2" aria-label="Default select example">
+    <option selected value="">Choose a target format</option>
+    <option value="jpeg">JPEG</option>
+    <option value="png">PNG</option>
+    <option value="gif">GIF</option>
+    <option value="bmp">BMP</option>
+    <option value="tiff">TIFF</option>
+    <option value="webp">WEBP</option>
+    <option value="ppm">PPM</option>
+    <option value="pgm">PGM</option>
+    <option value="pbm">PBM</option>
+    <option value="pam">PAM</option>
+    <option value="pnm">PNM</option>
+    <option value="dpx">DPX</option>
+    <option value="tga">TGA</option>
+    <option value="exr">EXR</option>
+    <option value="j2k">JPEG 2000</option>
+    <option value="iff">IFF</option>
+    <option value="jpegls">JPEG-LS</option>
+    <option value="jpeg2000">JPEG2000</option>
+    <option value="pcx">PCX</option>
+    <option value="rast">Sun Rasterfile</option>
+    <option value="xwd">XWD</option>
+    <option value="yuv">YUV</option>
+    <option value="psd">PSD</option>
+  </select>
+
+  <button [disabled]="!myform.valid || loader" [class]="myform.valid && !loader? 'file-upload-btn my-3' : 'file-upload-btn-disabled my-3'" type="submit">
+    <span *ngIf="loader" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    {{submitButtonText}}
+  </button>
+</form>
