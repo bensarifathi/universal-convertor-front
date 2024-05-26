@@ -72,7 +72,7 @@ export class ConvertorComponent {
             this.mediaSubscriber?.unsubscribe();
             this.loader = false;
             this.submitButtonText = "Convert";
-            this.router.navigate([`download`], {queryParams: {link: statusResponse.outputFile}});
+            this.router.navigate([`download`], {queryParams: {link: statusResponse.outputFile.replace("http", "https")}});
           } else
               this.submitButtonText = "Converting ..."
         },

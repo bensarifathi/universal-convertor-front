@@ -13,7 +13,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class DownloadFileComponent {
 
-  link = this.route.snapshot.queryParams["link"];
+  link: string = this.route.snapshot.queryParams["link"];
   title = "Download Page";
 
   constructor(
